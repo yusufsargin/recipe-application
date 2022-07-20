@@ -1,30 +1,22 @@
 package com.yusufsargin.RecipeApp.controller;
 
-import com.yusufsargin.RecipeApp.domain.Category;
-import com.yusufsargin.RecipeApp.repositories.CategoryRepository;
-import com.yusufsargin.RecipeApp.repositories.UnitOfMeasureRepository;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.yusufsargin.RecipeApp.services.RecipeService;
 
-import java.util.Optional;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
+    private final RecipeService recipeService;
 
-    private final CategoryRepository categoryRepository;
-    private final UnitOfMeasureRepository unitOfMeasureRepository;
-
-    public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
-        this.categoryRepository = categoryRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    public IndexController(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
-    @RequestMapping({"", "/", "/index"})
-    public String getIndexPage() {
-        Optional<Category> category = categoryRepository.findByDescription("American");
-
-        System.out.println("Category Id: " +category.get().getId());
-
+    @RequestMapping({ "", "/", "/index" })
+    public String getIndexPage(Model model) {
+        model.addAttribute("recipes", recipeService.getRecipes());
 
         return "index";
     }
