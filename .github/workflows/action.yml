@@ -11,4 +11,9 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
           cache: 'maven'
-      - run: ./mvnw test
+      - name: Run Verify
+        run: ./mvnw verify
+
+      - name: Run  tests
+        run: ./mvnw test
+
