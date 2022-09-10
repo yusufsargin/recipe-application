@@ -1,16 +1,16 @@
 package com.yusufsargin.RecipeApp.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import java.util.HashSet;
-import java.util.Set;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Recipe {
 
     @Id
@@ -45,6 +45,13 @@ public class Recipe {
     public void setNotes(Notes notes) {
         notes.setRecipe(this);
         this.notes = notes;
+    }
+
+    @Builder
+    public Recipe(Long id, String description, Difficulty difficulty) {
+        this.id = id;
+        this.description = description;
+        this.difficulty = difficulty;
     }
 
     public Recipe addIngredient(Ingredient ingredient) {

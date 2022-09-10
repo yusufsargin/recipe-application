@@ -1,12 +1,11 @@
 package com.yusufsargin.RecipeApp.services;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.springframework.stereotype.Service;
-
 import com.yusufsargin.RecipeApp.domain.Recipe;
 import com.yusufsargin.RecipeApp.repositories.RecipeRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -21,6 +20,11 @@ public class RecipeServiceImpl implements RecipeService {
         Set<Recipe> recipes = new HashSet<>();
         recipeRepository.findAll().iterator().forEachRemaining(recipes::add);
         return recipes;
+    }
+
+    @Override
+    public Recipe findById(Long id) {
+        return recipeRepository.findById(id).orElse(null);
     }
 
 }
