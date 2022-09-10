@@ -6,11 +6,13 @@ import com.yusufsargin.RecipeApp.repositories.RecipeRepository;
 import com.yusufsargin.RecipeApp.repositories.UnitOfMeasureRepository;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.ContextStartedEvent;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent> {
@@ -104,6 +106,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         guacRecipe.getCategories().add(categoryMap.get(categoryDescList.get(0)));
         guacRecipe.getCategories().add(categoryMap.get(categoryDescList.get(1)));
 
+        guacRecipe.setUrl("http://www.simplyrecipes.com/recipes/perfect_guacamole/");
+        guacRecipe.setServings(4);
+        guacRecipe.setSource("Simply Recipes");
+
         recipes.add(guacRecipe);
 
         Recipe tacosRecipe = new Recipe();
@@ -160,6 +166,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
         tacosRecipe.getCategories().add(categoryMap.get(categoryDescList.get(0)));
         tacosRecipe.getCategories().add(categoryMap.get(categoryDescList.get(1)));
+
+        tacosRecipe.setUrl("http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
+        tacosRecipe.setServings(4);
+        tacosRecipe.setSource("Simply Recipes");
 
         recipes.add(tacosRecipe);
 
